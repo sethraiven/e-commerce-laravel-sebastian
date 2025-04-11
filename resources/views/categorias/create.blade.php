@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Agregar Categoría</h1>
+    <h1>Agregar Categoría.</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">

@@ -1,4 +1,7 @@
+{{-- Vista para agregar un producto --}}
+
 @extends('layouts.app')
+{{-- trae la barra de navegacion fija a esta vista --}}
 
 @section('content')
 <div class="container">
@@ -14,6 +17,8 @@
         </div>
     @endif
 
+    {{-- mensaje de error  --}}
+
     <form action="{{ route('productos.store') }}" method="POST">
         @csrf
 
@@ -22,6 +27,7 @@
             <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required>
         </div>
 
+        
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción:</label>
             <textarea name="descripcion" id="descripcion" class="form-control" required>{{ old('descripcion') }}</textarea>

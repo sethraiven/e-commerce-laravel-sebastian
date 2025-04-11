@@ -8,7 +8,7 @@
     @else <div style="display: flex; flex-wrap: wrap; gap:20px; margin-top: 20px;">
 
         @foreach ($productos as $producto)
-        <div style="border: 1px solid #ccc; padding: 15px; width: 200px; text-align: center;">
+        <div style="border: 1px solid #ebe8e8; padding: 15px; width: 200px; text-align: center;">
             <img src="{{ $producto->imagen }}" alt="imagen del producto" width="100">
             <h5>{{ $producto->nombre }}</h5>
             <p>${{ $producto->precio }}</p>
