@@ -12,6 +12,7 @@
                     'Carros'=>'https://www.shutterstock.com/image-vector/luxury-premium-realistic-fast-speed-600nw-2283337919.jpg',
                     'Aviones'=>'https://static.vecteezy.com/system/resources/thumbnails/049/462/030/small/two-f-16-fighter-jets-flying-high-above-the-desert-landscape-photo.jpg',
                     'Barcos'=>'https://media.istockphoto.com/id/104241367/es/foto/barco-crucero.jpg?s=612x612&w=0&k=20&c=xxxpTOheDTVJ_vkNqBKkefBTjah2CljSBKSR4wOmpEY=',
+                    'cohetes'=>"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi-Lertr3lvn5HmOr-s9FqKqVGLBM53oOUNQ&s",
                     
                     // Agregar más categorías con sus imágenes
                 ];

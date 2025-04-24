@@ -46,6 +46,12 @@ class ProductoController extends Controller
         'imagen' => $request->imagen,
     ]);
 
+    if ($producto->stock < 5){
+        
+        Mail::to('jsebastian.ar@gmail.com')->send(new StockBajo($producto));
+    }
+    // Enviar correo si el stock es bajo
+
     // Redirigir al listado
     return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
 }

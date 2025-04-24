@@ -2,11 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>Agregar Categoría.</h1>
+    <h1 class="text-center mb-4">Agregar una Categoría</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
-            <ul>
+            <strong>Por favor corrige los siguientes errores:</strong>
+            <ul class="mt-2">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -14,15 +15,22 @@
         </div>
     @endif
 
-    <form action="{{ route('categorias.store') }}" method="POST">
+    <form action="{{ route('categorias.store') }}" method="POST" class="p-4 shadow-sm rounded bg-white">
         @csrf
-        <label for="nombre">Nombre de la categoría:</label>
-        <input class="form-control" type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" required>
-        <label for="descripcion">Descripcion:</label>
-        <textarea class="form-control" name="descripcion" id="descripcion">{{ old('descripcion',$categoria->descripcion ?? '') }}</textarea>
-        <br><br>
-        <button type="submit" class="btn btn-outline-dark">Guardar</button>
-        <a href="{{ route('categorias.index') }}" class="btn btn-secondary">Cancelar</a>
+        <div class="mb-3">
+            <label for="nombre" class="form-label fw-bold">Nombre de la categoría:</label>
+            <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" placeholder="Ingrese el nombre de la categoría" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="descripcion" class="form-label fw-bold">Descripción:</label>
+            <textarea name="descripcion" id="descripcion" class="form-control" rows="4" placeholder="Ingrese una descripción">{{ old('descripcion', $categoria->descripcion ?? '') }}</textarea>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ route('categorias.index') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
     </form>
 </div>
 @endsection
