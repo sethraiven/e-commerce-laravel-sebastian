@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
+
 use App\Models\Categoria;
+
 
 Route::get('/', function () {
    $categorias = Categoria::all();

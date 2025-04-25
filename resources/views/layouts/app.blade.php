@@ -27,6 +27,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('categorias*') ? 'active' : '' }}" href="{{ route('categorias.index') }}">Categorías</a>
                     </li>
+                    {{-- <li><a class="{{ request()->routeIs('view-blog') ? 'active' : '' }}" href="{{ route('view-blog') }}">Blog</a></li> --}}
                 </ul>
             </div>
         </div>
