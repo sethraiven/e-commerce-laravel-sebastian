@@ -9,6 +9,11 @@ use App\Models\Categoria;
 class ProductoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $productos = Producto::with('categoria')->get(); // Obtener todos los productos con la relación de categoría
