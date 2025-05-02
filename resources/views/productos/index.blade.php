@@ -27,8 +27,10 @@
                 <th>Stock</th>
                 <th>Categoría</th>
                 <th>Imagen</th>
-                <th>Fecha de creación</th>  
-                <th>Acciones</th>
+                @auth<th>Fecha de creación</th> @endauth
+                {{-- Si el usuario es administrador, mostrar los botones de editar y eliminar --}}
+                {{-- @auth<th>Acciones</th>@endauth --}} 
+                @auth<th>Acciones</th>@endauth
             </tr>
         </thead>
         <tbody>
@@ -47,8 +49,10 @@
                         Sin imagen
                     @endif
                 </td>
-                <td>{{ $producto->created_at->format('d/m/Y H:i') }}</td>
-                <td>
+                @auth<td>{{ $producto->created_at->format('d/m/Y H:i') }}</td>@endauth
+                {{-- Si el usuario es administrador, mostrar los botones de editar y eliminar --}}
+               
+                @auth<td>
                     <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-warning btn-sm">Editar</a>
                 
                     <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline-block;">
@@ -56,7 +60,8 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
                     </form>
-                </td>
+                </td>@endauth
+
             </tr>
             @endforeach
         </tbody>

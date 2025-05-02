@@ -37,7 +37,8 @@
                     
                     {{-- //codigo para el inicio de sesión del profe daniel--}}
 
-                                      
+                   
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register')}}">Registrar Usuario</a></li>
                     
                     
                     
@@ -49,7 +50,7 @@
         @endguest
 
         @auth
-            <li class="nav-item"><a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Cerrar Sesion</a></li>
+            <li><a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Cerrar Sesion</a></li>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf

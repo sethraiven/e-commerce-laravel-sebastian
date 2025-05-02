@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
 
+
 class ProductoController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
+   public function __construct()
+{
+       $this->middleware('auth')->except(['index', 'show']);
     }
 
     public function index()
@@ -42,7 +43,7 @@ class ProductoController extends Controller
     ]);
 
     // Crear el producto
-    Producto::create([
+    $producto = Producto::create([
         'nombre' => $request->nombre,
         'descripcion' => $request->descripcion,
         'precio' => $request->precio,

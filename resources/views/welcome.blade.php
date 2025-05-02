@@ -18,7 +18,7 @@
                 ];
             @endphp
 
-            @foreach ($categorias as $index => $categoria)
+            @foreach ($categorias as $index => $categoria)  
                 <div class="carousel-item @if($index == 0) active @endif">
                     <div class="d-flex justify-content-center align-items-center flex-column" style="height: 400px; background-color: #f8f9fa; border-radius: 10px;">
 

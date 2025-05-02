@@ -16,7 +16,9 @@
         
     @endif
 
+        @auth
     <a href="{{ route('categorias.create') }}" class="btn btn-secondary">Agregar Nueva Categoría</a>
+        @endauth
 
     @if($categorias->isEmpty())
         <p>No hay categorías registradas.</p>
@@ -26,7 +28,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Descripcion</th>
-                    <th>Acciones</th>
+                    @auth<th>Acciones</th>@endauth
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +36,17 @@
                     <tr>
                         <td>{{ $categoria->nombre }}</td>
                         <td>{{ $categoria->descripcion }}</td>
-                        <td>
+                        
+                        
+                        @auth<td>
                             <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-warning btn-sm">Editar</a>
                             <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta categoría?')">Eliminar</button>
                             </form>
-                        </td>
+                        </td>@endauth
+
                     </tr>
                 @endforeach
             </tbody>
