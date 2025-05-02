@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/57c6e4493e.js" crossorigin="anonymous"></script>
     
 </head>
 <body>
@@ -27,7 +28,32 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('categorias*') ? 'active' : '' }}" href="{{ route('categorias.index') }}">Categorías</a>
                     </li>
-                    {{-- <li><a class="{{ request()->routeIs('view-blog') ? 'active' : '' }}" href="{{ route('view-blog') }}">Blog</a></li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('categorias_blog.*') ? 'active' : '' }}" href="{{ route('categorias_blog.index') }}">Categorias-Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        {{-- <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a> --}}
+                    </li>
+                    
+                    {{-- //codigo para el inicio de sesión del profe daniel--}}
+                    
+                    @guest
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-user"></i></a>
+                
+            </li>
+        @endguest
+
+        @auth
+            <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Cerrar Sesion</a></li>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+            </form>
+        @endauth
+
+                
+                    
                 </ul>
             </div>
         </div>
@@ -43,6 +69,7 @@
     .navbar {
         background: linear-gradient(90deg, #3e4e50, #4a6b40); /* Degradado verde más claro */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra robusta */
+        
     }
 
     .navbar-brand {
@@ -50,6 +77,7 @@
         font-weight: bold;
         color: #f4d03f; /* Amarillo militar */
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Sombra en el texto */
+        
     }
 
     .navbar-nav .nav-link {
@@ -58,6 +86,17 @@
         font-weight: 600;
         transition: color 0.3s, transform 0.3s; /* Transición suave */
     }
+
+        i{
+            transition: color 0.3s, transform 1s; /* Transición suave */
+            
+            height: 30px;
+            width: 30px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+       
 
     .navbar-nav .nav-link:hover {
         color: #f4d03f; /* Amarillo militar al pasar el mouse */

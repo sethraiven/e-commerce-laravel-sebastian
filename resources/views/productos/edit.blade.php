@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Editar Producto</h2>
+    <h2 class="mb-4 text-center">Editar Producto</h2>
 
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -12,7 +12,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 
     <form action="{{ route('producto.update', $producto->id) }}" method="POST">
         @csrf
@@ -40,12 +40,14 @@
 
         <div class="mb-3">
             <label for="categoria_id" class="form-label">Categoría:</label>
-            <select name="categoria_id" id="categoria_id" required>
-            <option value="">Seleccione una categoria</option>
-            @foreach($categorias as $categoria)
-                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-            @endforeach
-        </select>
+            <select name="categoria_id" id="categoria_id" class="form-select" required>
+                <option value="">Seleccione una categoría</option>
+                @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>
+                        {{ $categoria->nombre }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-group mb-2">
@@ -53,8 +55,17 @@
             <input type="text" name="imagen" class="form-control" value="{{ $producto->imagen }}" required>
         </div>
 
-        <button type="submit" class="btn btn-outline-dark">Actualizar</button>
-        <a href="{{ route('productos.index') }}" class="btn btn-secondary mt-3">Cancelar</a>
+        <div class="d-flex justify-content-between mt-4">
+            
+            <button type="submit" class="btn btn-success px-4">
+                <i class="bi bi-check-circle"></i> Actualizar
+            </button>
+            
+            <a href="{{ route('productos.index') }}" class="btn btn-outline-danger px-4">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
+           
+        </div>
     </form>
 </div>
 @endsection

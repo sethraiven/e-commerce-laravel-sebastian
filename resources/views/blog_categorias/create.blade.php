@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-center align-items-center">
-    <div class="card text-white bg-dark border-0 w-75">
-        <div class="card-header text-center border-bottom border-secondary">
-            <h4 class="mb-0">Crear Categorias-Blog</h4>
+<div class="d-flex justify-content-center align-items-center mt-4">
+    <div class="card shadow-lg border-0 w-75">
+        <div class="card-header bg-primary text-white text-center rounded-top">
+            <h4 class="mb-0">Crear Nueva Categoría</h4>
         </div>
 
-        <div class="card-body d-flex justify-content-center">
-            <div class="w-100" style="max-width: 500px;">
+        <div class="card-body bg-light">
+            <div class="w-100" style="max-width: 500px; margin: 0 auto;">
                 @if ($errors->any())
                     <div class="alert alert-danger py-2 px-3 mb-3">
                         <ul class="mb-0 small">
@@ -22,15 +22,15 @@
                 <form action="{{ route('categorias_blog.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" placeholder="Ej: Deportes" required>
+                        <label for="nombre" class="form-label fw-bold">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: Deportes" required>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                        <textarea class="form-control" name="descripcion" rows="3"></textarea>
+                        <label for="descripcion" class="form-label fw-bold">Descripción</label>
+                        <textarea class="form-control" name="descripcion" id="descripcion" rows="3" placeholder="Escribe una breve descripción"></textarea>
                     </div>
-                    <div class="mb-3">
-                        <a class="btn btn-outline-secondary ms-2" href="{{ route('categorias_blog.index') }}">Cancelar</a>
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary" href="{{ route('categorias_blog.index') }}">Cancelar</a>
                         <button type="submit" class="btn btn-primary">Crear</button>
                     </div>
                 </form>
