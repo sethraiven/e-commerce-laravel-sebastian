@@ -2,33 +2,53 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow-lg border-0">
-        <div class="card-header bg-primary text-white text-center">
-            <h4 class="mb-0">{{ $articulo->titulo }}</h4>
-        </div>
-        <div class="card-body text-center bg-light">
-            @if($articulo->imagen_url)
-                <img src="{{ asset('storage/' . $articulo->imagen_url) }}" alt="Imagen del artículo" class="img-fluid rounded mb-3" style="max-height: 300px; object-fit: cover;">
-            @endif  
-            <p class="card-text text-muted">{{ $articulo->contenido }}</p>
-            <p class="text-secondary"><strong>Autor:</strong> {{ $articulo->autor }}</p>
-            <a class="btn btn-warning btn-sm" href="{{ route('articulos_blog.edit', $articulo->id) }}">
-                <i class="bi bi-pencil-square"></i> Editar
-            </a>
-            <a class="btn btn-outline-secondary btn-sm" href="{{ route('articulos_blog.index') }}">
-                <i class="bi bi-arrow-left"></i> Volver
-            </a>
-        </div>
-        <div class="card-footer text-muted text-center">
-            Publicado el: {{ $articulo->fecha_publicacion }}
-        </div>
+    <div class="text-center mb-4">
+        <h1 class="fw-bold" style="color: #d4af37;">Artículos del Blog</h1>
+        {{-- Botón para crear --}}
+        <a href="{{ route('articulos_blog.create') }}" class="btn btn-success mt-3" style="background-color: #4a6b40; border-color: #4a6b40;">
+            <i class="bi bi-plus-circle"></i> Agregar Artículo
+        </a>
     </div>
 
-    {{-- Comentarios del artículo --}}
+    {{-- Mensaje de éxito --}}
+    @if (session('success'))
+        <div class="alert alert-success text-center" style="background-color: #4a6b40; color: #ffffff; border: none;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="row g-4">
+        {{-- Lista de artículos --}}
+        @foreach ($articulos as $articulo)
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card shadow-sm border-0 h-100" style="background-color: #2b3e50; color: #ffffff;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #d4af37;">{{ $articulo->titulo }}</h5>
+                        <p class="card-text text-muted" style="color: #c0cac1;">{{ Str::limit($articulo->contenido, 100, '...') }}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('articulos_blog.show', $articulo->id) }}" class="btn btn-primary btn-sm" style="background-color: #4a6b40; border-color: #4a6b40;">
+                                <i class="bi bi-eye"></i> Ver
+                            </a>
+                            <a href="{{ route('articulos_blog.edit', $articulo->id) }}" class="btn btn-warning btn-sm" style="background-color: #d4af37; border-color: #d4af37; color: #000;">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <form action="{{ route('articulos_blog.destroy', $articulo->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit" style="background-color: #8b0000; border-color: #8b0000;" onclick="return confirm('¿Estás seguro de eliminar este artículo?')">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    {{-- Paginación --}}
     <div class="mt-4">
-        <h5 class="fw-bold text-primary">Comentarios</h5>
-        {{-- Aquí puedes agregar la lógica para mostrar los comentarios --}}
-        <p class="text-muted">No hay comentarios disponibles.</p>
+        {{ $articulos->links('pagination::bootstrap-5') }}
     </div>
 </div>
 @endsection
